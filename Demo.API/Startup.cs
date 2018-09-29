@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Demo.API.Data;
+using Demo.API.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -30,6 +31,8 @@ namespace Demo.API
             services.AddDbContext<DemoContext>(x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddCors();
+            services.AddScoped(typeof(IRepository<>), typeof(Demo.API.Repository.Repository<>));
+            services.AddScoped<IAuthRepository, Demo.API.Repository.AuthRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

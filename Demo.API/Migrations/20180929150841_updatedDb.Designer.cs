@@ -3,34 +3,20 @@ using System;
 using Demo.API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Demo.API.Migrations
 {
     [DbContext(typeof(DemoContext))]
-    partial class DemoContextModelSnapshot : ModelSnapshot
+    [Migration("20180929150841_updatedDb")]
+    partial class updatedDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.1.3-rtm-32065");
-
-            modelBuilder.Entity("Demo.API.Models.Product", b =>
-                {
-                    b.Property<int>("ProductId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("ProductName");
-
-                    b.Property<int>("TypeId");
-
-                    b.Property<string>("TypeName");
-
-                    b.HasKey("ProductId");
-
-                    b.ToTable("Product");
-                });
 
             modelBuilder.Entity("Demo.API.Models.User", b =>
                 {
